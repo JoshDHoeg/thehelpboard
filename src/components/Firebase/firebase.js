@@ -49,6 +49,11 @@ class Firebase {
     doSignInWithFacebook = () =>
         this.auth.signInWithPopup(this.facebookProvider);
 
+    doSendEmailVerification = () =>
+        this.auth.currentUser.sendEmailVerification({
+          url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+        });
+
     doSignOut = () => this.auth.signOut();
 
     doPasswordReset = email => this.auth.sendPasswordResetEmail(email);
@@ -70,6 +75,8 @@ class Firebase {
             // merge auth and db user
             authUser = {
               uid: authUser.uid,
+              emailVerified: authUser.emailVerified,
+              providerData: authUser.providerData,
               email: authUser.email,
               ...dbUser,
             };
