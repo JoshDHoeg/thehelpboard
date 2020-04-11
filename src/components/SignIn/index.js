@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons'
+
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
@@ -145,7 +148,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <Button type="submit" className="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i>Sign In with Google</Button>
+        <Button type="submit" className="google-login ripple-effect"><FontAwesomeIcon icon={faGoogle} />Sign In with Google</Button>
         {error && <p>{error.message}</p>}
       </form>
     );
@@ -187,7 +190,7 @@ class SignInFacebookBase extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <Button type="submit" className="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i>Sign In with Facebook</Button>
+        <Button type="submit" className="facebook-login ripple-effect"><FontAwesomeIcon icon={faFacebook} /> Sign In with Facebook</Button>
         {error && <p>{error.message}</p>}
       </form>
     );
