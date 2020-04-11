@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp';
@@ -6,14 +8,29 @@ import { PasswordForgetLink } from '../PasswordForget';
 import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 const SignInPage = () => (
-  <div>
-    <h1>SignIn</h1>
-    <SignInForm />
-    <SignInGoogle />
-    <SignInFacebook />
-    <PasswordForgetLink />
-    <SignUpLink />
-  </div>
+  <Container>
+    <Row>
+      <Col md={{ span: 6, offset: 3 }}>
+
+        <div className="login-register-page">
+        
+          <div className="welcome-text">
+            <h3>We're glad to see you again!</h3>
+            <SignUpLink />
+          </div>
+            
+          <SignInForm />
+          
+          <div className="social-login-separator"><span>or</span></div>
+          <div className="social-login-buttons">
+            <SignInGoogle />
+            <SignInFacebook />
+          </div>
+        </div>
+
+      </Col>
+    </Row>
+  </Container>
 );
 
 const INITIAL_STATE = {
@@ -58,23 +75,36 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="password"
-          value={password}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+ 
+        <div class="input-with-icon-left">
+          <i class="icon-material-baseline-mail-outline"></i>
+          <input
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+            className="input-text with-border"
+            required
+          />
+        </div>
+        <div class="input-with-icon-left">
+          <i class="icon-material-outline-lock"></i>
+          <input
+            name="password"
+            value={password}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+            className="input-text with-border"
+            required
+          />
+        </div>
+        <PasswordForgetLink />
+
+        <Button disabled={isInvalid} type="submit" className="button full-width button-sliding-icon ripple-effect margin-top-10">
+          Sign In <i class="icon-material-outline-arrow-right-alt"></i>
+        </Button>
         {error && <p>{error.message}</p>}
       </form>
     );
@@ -115,7 +145,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Google</button>
+        <Button type="submit" className="google-login ripple-effect"><i class="icon-brand-google-plus-g"></i>Sign In with Google</Button>
         {error && <p>{error.message}</p>}
       </form>
     );
@@ -157,7 +187,7 @@ class SignInFacebookBase extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <button type="submit">Sign In with Facebook</button>
+        <Button type="submit" className="facebook-login ripple-effect"><i class="icon-brand-facebook-f"></i>Sign In with Facebook</Button>
         {error && <p>{error.message}</p>}
       </form>
     );
