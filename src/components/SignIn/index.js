@@ -23,7 +23,7 @@ const SignInPage = () => (
           </div>
             
           <SignInForm />
-            <div className="social-login-separator"><span>or</span></div>
+            <hr data-content="OR" className="hr-text"></hr>
           </div>
       </Col>
     </Row>

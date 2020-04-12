@@ -6,11 +6,24 @@ import { withFirebase } from '../Firebase';
 import * as ROUTES from '../../constants/routes';
 import * as ROLES from '../../constants/roles';
 
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+
 const SignUpPage = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
-  </div>
+<Container>
+  <Row>
+    <Col md={{ span: 6, offset: 3 }}>
+
+      <div className="login-register-page">
+      
+        <div className="welcome-text">
+          <h3>Welcome, we are excited to meet you!</h3>
+        </div>
+          
+        <SignUpForm />
+      </div>
+    </Col>
+  </Row>
+</Container>
 );
 
 const INITIAL_STATE = {
@@ -100,34 +113,55 @@ class SignUpFormBase extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
-          name="username"
-          value={username}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          name="email"
-          value={email}
-          onChange={this.onChange}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm Password"
-        />
+      
+        <Form.Group controlId="signin.password">
+          <Form.Label>Username</Form.Label>
+          <Form.Control 
+            name="username"
+            value={username}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Full Name"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="signin.password">
+          <Form.Label>Email</Form.Label>
+          <Form.Control 
+            name="email"
+            value={email}
+            onChange={this.onChange}
+            type="text"
+            placeholder="Email Address"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="signin.password">
+          <Form.Label>Repeat Your Password</Form.Label>
+          <Form.Control 
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Password"
+            required
+          />
+        </Form.Group>
+
+        <Form.Group controlId="signin.password">
+          <Form.Label>Repeat Your Password</Form.Label>
+          <Form.Control 
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
+            type="password"
+            placeholder="Confirm Password"
+            required
+          />
+        </Form.Group>
+
         <label>
           Admin:
           <input
@@ -137,9 +171,10 @@ class SignUpFormBase extends Component {
             onChange={this.onChangeCheckbox}
           />
         </label>
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+
+        <Button disabled={isInvalid} type="submit" className="button full-width button-sliding-icon ripple-effect margin-top-10" block>
+          Sign Up <i class="icon-material-outline-arrow-right-alt"></i>
+        </Button>
         {error && <p>{error.message}</p>}
       </form>
     );
