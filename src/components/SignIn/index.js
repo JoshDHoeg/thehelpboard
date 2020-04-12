@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons'
 
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 import { SignUpLink } from '../SignUp';
@@ -23,14 +23,16 @@ const SignInPage = () => (
           </div>
             
           <SignInForm />
-          
-          <div className="social-login-separator"><span>or</span></div>
-          <div className="social-login-buttons">
-            <SignInGoogle />
-            <SignInFacebook />
+            <div className="social-login-separator"><span>or</span></div>
           </div>
-        </div>
-
+      </Col>
+    </Row>
+    <Row>
+      <Col md={{ span: 3, offset: 3 }}>
+            <SignInGoogle />
+      </Col>
+      <Col md={{ span: 3 }}>
+            <SignInFacebook />
       </Col>
     </Row>
   </Container>
@@ -78,22 +80,20 @@ class SignInFormBase extends Component {
     const isInvalid = password === '' || email === '';
     return (
       <form onSubmit={this.onSubmit}>
- 
-        <div class="input-with-icon-left">
-          <i class="icon-material-baseline-mail-outline"></i>
-          <input
+        <Form.Group controlId="signin.email">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control 
             name="email"
             value={email}
             onChange={this.onChange}
             type="text"
             placeholder="Email Address"
             className="input-text with-border"
-            required
-          />
-        </div>
-        <div class="input-with-icon-left">
-          <i class="icon-material-outline-lock"></i>
-          <input
+            required />
+        </Form.Group>
+        <Form.Group controlId="signin.password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control 
             name="password"
             value={password}
             onChange={this.onChange}
@@ -102,10 +102,11 @@ class SignInFormBase extends Component {
             className="input-text with-border"
             required
           />
-        </div>
+        </Form.Group>
+
         <PasswordForgetLink />
 
-        <Button disabled={isInvalid} type="submit" className="button full-width button-sliding-icon ripple-effect margin-top-10">
+        <Button disabled={isInvalid} type="submit" className="button full-width button-sliding-icon ripple-effect margin-top-10" block>
           Sign In <i class="icon-material-outline-arrow-right-alt"></i>
         </Button>
         {error && <p>{error.message}</p>}
@@ -148,7 +149,7 @@ class SignInGoogleBase extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <Button type="submit" className="google-login ripple-effect"><FontAwesomeIcon icon={faGoogle} />Sign In with Google</Button>
+        <Button type="submit" className="google-login ripple-effect" block><FontAwesomeIcon icon={faGoogle} /> Sign In with Google</Button>
         {error && <p>{error.message}</p>}
       </form>
     );
@@ -190,7 +191,7 @@ class SignInFacebookBase extends Component {
     const { error } = this.state;
     return (
       <form onSubmit={this.onSubmit}>
-        <Button type="submit" className="facebook-login ripple-effect"><FontAwesomeIcon icon={faFacebook} /> Sign In with Facebook</Button>
+        <Button type="submit" className="facebook-login ripple-effect" block><FontAwesomeIcon icon={faFacebook} /> Sign In with Facebook</Button>
         {error && <p>{error.message}</p>}
       </form>
     );
