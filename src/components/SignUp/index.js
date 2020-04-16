@@ -32,6 +32,7 @@ const INITIAL_STATE = {
   passwordOne: '',
   passwordTwo: '',
   isAdmin: false,
+  isClient: false,
   error: null,
 };
 
@@ -102,6 +103,7 @@ class SignUpFormBase extends Component {
       passwordOne,
       passwordTwo,
       isAdmin,
+      isClient,
       error,
     } = this.state;
 
@@ -168,6 +170,16 @@ class SignUpFormBase extends Component {
             name="isAdmin"
             type="checkbox"
             checked={isAdmin}
+            onChange={this.onChangeCheckbox}
+          />
+        </label>
+
+        <label>
+          Client:
+          <input
+            name="isClient"
+            type="checkbox"
+            checked={isClient}
             onChange={this.onChangeCheckbox}
           />
         </label>
