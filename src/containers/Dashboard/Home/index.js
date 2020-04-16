@@ -4,8 +4,8 @@ import {
   AuthUserContext,
   withAuthorization,
   withEmailVerification,
-} from '../Session';
-import { withFirebase } from '../Firebase';
+} from '../../../utilities/Session';
+import { withFirebase } from '../../../utilities/Firebase';
 const HomePage = () => (
   <div>
     <h1>Home Page</h1>

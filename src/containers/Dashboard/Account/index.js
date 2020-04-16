@@ -5,11 +5,11 @@ import {
   AuthUserContext,
   withAuthorization,
   withEmailVerification,
-} from '../Session';
+} from '../../../utilities/Session';
 
-import { withFirebase } from '../Firebase';
-import { PasswordForgetForm } from '../PasswordForget';
-import PasswordChangeForm from '../PasswordChange';
+import { withFirebase } from '../../../utilities/Firebase';
+import { PasswordForgetForm } from '../../Users/PasswordForget';
+import PasswordChangeForm from '../../Users/PasswordChange';
 
 
 const SIGN_IN_METHODS = [

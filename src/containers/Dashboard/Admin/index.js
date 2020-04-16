@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import { compose } from 'recompose';
-import { withFirebase } from '../Firebase';
-import { withAuthorization, withEmailVerification } from '../Session';
-import * as ROLES from '../../constants/roles';
-import * as ROUTES from '../../constants/routes';
+import { withFirebase } from '../../../utilities/Firebase';
+import { withAuthorization, withEmailVerification } from '../../../utilities/Session';
+import * as ROLES from '../../../utilities/constants/roles';
+import * as ROUTES from '../../../utilities/constants/routes';
 const AdminPage = () => (
   <div>
     <h1>Admin</h1>

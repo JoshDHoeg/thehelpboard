@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { compose } from 'recompose';
 
-import { withFirebase } from '../Firebase';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { withFirebase } from '../../../utilities/Firebase';
+import * as ROUTES from '../../../utilities/constants/routes';
+import * as ROLES from '../../../utilities/constants/roles';
 
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 

@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav } from 'react-bootstrap';
 
-import { AuthUserContext } from '../Session';
-import SignOutButton from '../SignOut';
-import * as ROUTES from '../../constants/routes';
-import * as ROLES from '../../constants/roles';
+import { AuthUserContext } from '../../utilities/Session';
+import SignOutButton from '../../containers/Users/SignOut';
+import * as ROUTES from '../../utilities/constants/routes';
+import * as ROLES from '../../utilities/constants/roles';
 const Navigation = () => (
   <AuthUserContext.Consumer>
     {authUser =>
@@ -25,6 +25,7 @@ const NavigationAuth = ({ authUser }) => (
         <Nav.Link><Link to={ROUTES.LANDING}>Landing</Link></Nav.Link>
         <Nav.Link><Link to={ROUTES.HOME}>Home</Link></Nav.Link>
         <Nav.Link><Link to={ROUTES.ACCOUNT}>Account</Link></Nav.Link>
+        <Nav.Link><Link to={ROUTES.NEW_PROJECT}>New Project</Link></Nav.Link>
         {!!authUser.roles[ROLES.ADMIN] && (
         <li>
           <Nav.Link href="#link"><Link to={ROUTES.ADMIN}>Admin</Link></Nav.Link>
